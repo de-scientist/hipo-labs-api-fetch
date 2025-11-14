@@ -1,9 +1,10 @@
 //add relevant imports
 //import useState which lets components store and manage internal values that change over time
 import { useState } from "react";
+//used for calling apis and is cleaner than fetch, supports interceptors, and returns JSON straight away
 import axios from "axios";
-import "./App.css";
 
+//define
 interface TheUniversityReturn{
   name: string;
   web_pages: string[];
