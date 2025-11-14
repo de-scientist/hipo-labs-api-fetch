@@ -1,3 +1,4 @@
+//add relevant imports
 import { useState } from "react";
 import axios from "axios";
 import "./App.css";
@@ -27,6 +28,7 @@ function App() {
       setUniversities(response.data);
       setLoading(false);
     } catch (error){
+
       setError("Something went wrong, kindly try again");
       setLoading(false);
     }
@@ -34,15 +36,16 @@ function App() {
 
   return (
     <>
-      <h1>Universities Finder</h1>
+      <h1 className="heading">Universities Finder</h1>
       <div className="card">
         <input type="text" 
         placeholder="Enter a country name"  
         value={country}
         onChange={(e) => setCountry(e.target.value)}
+        className="input"
         />
 
-        <button onClick={handleGetUniversity}>
+        <button onClick={handleGetUniversity} className="button">
           {loading
             ? "Loading please wait...."
             : "Get the country's universities"}
