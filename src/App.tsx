@@ -1,29 +1,54 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import axios from "axios";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [country, setCountry] = useState("");
+  const [university, setUniversity] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  async function handleGetUniversity() {
+    try {
+      setLoading(true);
+      setUniversity("");
+      const response = await axios.get(
+        `http://universities.hipolabs.com/search?country=${country}`,
+      );
+      setUniversity(response.data.value);
+      setLoading(false);
+    } catch {
+      setError("Something went wrong, kindly try again");
+      setLoading(false);
+    }
+  }
 
   return (
     <>
-      <h1>Vite + React</h1>
+      <h1>Our university</h1>
       <div className="card">
-        <input type="text" placeholder='Enter your country'/>
-         <a href="" target="_blank" rel='noopener'>
+        <input type="text" placeholder="Enter your country" />
+        <a href="" target="_blank" rel="noopener">
           <h2></h2>
         </a>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button onClick={handleGetUniversity}>
+          {loading
+            ? "Loading please wait...."
+            : "Get the country's universities"}
         </button>
+        <h2>{error}</h2>
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          <a
+            href="${universityWebpage}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <h2></h2>
+            <h2>{`${university}`}</h2>
+          </a>
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
