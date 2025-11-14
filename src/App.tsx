@@ -12,6 +12,7 @@ interface TheUniversityReturn{
   country: string;
 }
 
+//define the react functional component- everything inside it is the behavior + UI of the app and gets rendered when the app starts
 function App() {
   const [country, setCountry] = useState("");
   const [universities, setUniversities] = useState<TheUniversityReturn[]>([]);
