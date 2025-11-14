@@ -2,21 +2,31 @@ import { useState } from "react";
 import axios from "axios";
 import "./App.css";
 
+interface TheUniversityReturn{
+  name: string;
+  web_pages: string[];
+  domains: string[];
+  country: string;
+}
+
 function App() {
   const [country, setCountry] = useState("");
-  const [university, setUniversity] = useState("");
+  const [universities, setUniversities] = useState<TheUniversityReturn[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
   async function handleGetUniversity() {
     try {
       setLoading(true);
-      setUniversity("");
+      setError("");
+      setUniversities([]);
       const response = await axios.get(
-        `http://universities.hipolabs.com/search?country=${country}`,
+        `http://universities.hipolabs.com/search?country=${country}`
       );
-      setUniversity(response.data.value);
+
+      setUniversities(response.data);
       setLoading(false);
-    } catch {
+    } catch (error){
       setError("Something went wrong, kindly try again");
       setLoading(false);
     }
@@ -24,28 +34,40 @@ function App() {
 
   return (
     <>
-      <h1>Our university</h1>
+      <h1>Universities Finder</h1>
       <div className="card">
-        <input type="text" placeholder="Enter your country" />
-        <a href="" target="_blank" rel="noopener">
-          <h2></h2>
-        </a>
+        <input type="text" 
+        placeholder="Enter a country name"  
+        value={country}
+        onChange={(e) => setCountry(e.target.value)}
+        />
+
         <button onClick={handleGetUniversity}>
           {loading
             ? "Loading please wait...."
             : "Get the country's universities"}
         </button>
-        <h2>{error}</h2>
-        <p>
-          <a
-            href="${universityWebpage}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2></h2>
-            <h2>{`${university}`}</h2>
-          </a>
-        </p>
+
+        {error && <h2>{error}</h2>}
+
+        <div>
+          {universities.map((uni) => (
+            <div key={uni.name} className="university-item">
+              <h3>{uni.name}</h3>
+
+              {uni.web_pages.map((url) => (
+                <a
+                key={url} 
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                >
+                  {url}
+                </a>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
