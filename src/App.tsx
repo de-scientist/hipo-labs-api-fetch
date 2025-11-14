@@ -4,7 +4,7 @@ import { useState } from "react";
 //used for calling apis and is cleaner than fetch, supports interceptors, and returns JSON straight away
 import axios from "axios";
 
-//define
+//define the structure of each university object returned by the Hipo Labs API
 interface TheUniversityReturn{
   name: string;
   web_pages: string[];
