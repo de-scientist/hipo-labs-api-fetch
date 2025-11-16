@@ -21,7 +21,7 @@ function App() {
       setUniversities([]);
 
       const response = await axios.get(
-        `http://universities.hipolabs.com/search?country=${country}`
+        `http://universities.hipolabs.com/search?country=${country}`,
       );
 
       setUniversities(response.data);

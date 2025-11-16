@@ -1,6 +1,3 @@
-/* ===============================
-   GLOBAL RESET & BASE STYLES
-   =============================== */
 * {
   margin: 0;
   padding: 0;
@@ -16,9 +13,6 @@ body {
   justify-content: center;
 }
 
-/* ===============================
-   HEADING
-   =============================== */
 .heading {
   text-align: center;
   font-size: 2.2rem;
@@ -27,9 +21,6 @@ body {
   color: #0d1b2a;
 }
 
-/* ===============================
-   CARD CONTAINER
-   =============================== */
 .card {
   background: #ffffff;
   width: 100%;
@@ -42,9 +33,6 @@ body {
   gap: 20px;
 }
 
-/* ===============================
-   INPUT FIELD
-   =============================== */
 .input {
   width: 100%;
   padding: 14px 16px;
@@ -55,14 +43,11 @@ body {
 }
 
 .input:focus {
-  border-color: #2563eb;
+  border-color: #0b3692dc;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
   outline: none;
 }
 
-/* ===============================
-   BUTTON
-   =============================== */
 .button {
   padding: 14px 16px;
   background: #2563eb;
@@ -82,9 +67,6 @@ body {
   transform: scale(0.97);
 }
 
-/* ===============================
-   UNIVERSITY ITEMS
-   =============================== */
 .university-item {
   background: #eef3fa;
   padding: 16px;
@@ -110,9 +92,6 @@ body {
   text-decoration: underline;
 }
 
-/* ===============================
-   ERROR TEXT
-   =============================== */
 h2 {
   color: #b91c1c;
   text-align: center;
